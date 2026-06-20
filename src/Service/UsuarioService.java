@@ -10,20 +10,20 @@ public class UsuarioService {
     private UsuarioRepository repository = new UsuarioRepository();
 
     public void cadastrar(String nome, String email) {
-        if (nome == null || nome.isBlank()) {
+        if (nome == null) {
             System.out.println("Erro: nome não pode ser vazio.");
             return;
 
         }
 
-        if (email == null || !email.contains("@")) {
-            System.out.println("Erro: e-mail inválido.");
+        if (email == null || !email.contains("@gmail.com")) {
+            System.out.println("Erro: e-mail inválido insira o @gmail.com.");
             return;
         }
 
         Usuario usuario = new Usuario(nome, 0, email);
         repository.salvar(usuario);
-        System.out.println("Usuario cadastrado com sucesso" + usuario);
+        System.out.println("Usuario cadastrado com sucesso.");
 
 
     }
@@ -45,7 +45,7 @@ public class UsuarioService {
     public void buscarPorId(int id) {
         Optional<Usuario> usuario = repository.BuscarPorId(id);
         usuario.ifPresentOrElse(
-                usuario1 -> System.out.println("Usuário encontrado")
+                usuario1 -> System.out.println("Usuário encontrado" + usuario1)
                 , () -> System.out.println("Usuário com id" + id + "não encontrado")
         );
 
@@ -53,6 +53,13 @@ public class UsuarioService {
 
 
     public void atualizar(int id, String novoNome, String novoEmail) {
+       if( id < 0 || novoNome == null || novoEmail == null ) {
+           System.out.println("Usuario não existente");
+           return;
+
+       }
+
+
         boolean atualizado = repository.atualizar(id, novoNome, novoEmail);
         System.out.println(atualizado ? "Atualizado com sucesso!" : "Usuário não encontrado.");
 

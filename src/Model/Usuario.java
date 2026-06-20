@@ -40,11 +40,12 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "nome='" + nome + '\'' +
-                ", id='" + id + '\'' +
-                ", senha='" + email + '\'' +
-                '}';
+        return "\n-----------------------------" +
+                "\n Nome : " + nome +
+                "\n Email : " + email +
+                "\n ID: " + id +
+                "\n-----------------------------";
     }
+
 }
 
